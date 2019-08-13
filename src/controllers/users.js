@@ -3,8 +3,8 @@ const help = require('../helpers/helpers')
 const cloudinary = require('cloudinary')
 const jwt = require('jsonwebtoken')
 
-module.exports = {
-  getUser: (req, res) => {
+module.exports = { 
+  getUser: ( res) => {
     userModel
       .getUser()
       .then(resultUser => {
