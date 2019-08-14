@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary')
 const jwt = require('jsonwebtoken')
 
 module.exports = { 
-  getUser: ( res) => {
+  getUser: (req,  res) => {
     userModel
       .getUser()
       .then(resultUser => {

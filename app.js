@@ -8,6 +8,7 @@ const app = express()
 const port = process.env.SERVER_PORT || 3333
 
 const userRoute = require('./src/routes/users')
+const pointRoute = require('./src/routes/point')
 const whitelist = process.env.WHITELIST
 
 const corsOptions = (req, callback) => {
@@ -22,7 +23,7 @@ const corsOptions = (req, callback) => {
       origin:false
     })
   }
-}
+} 
 
 app.use(cors());
 app.options('*', cors(corsOptions))
@@ -36,3 +37,4 @@ app.listen(port, () => {
 app.use(bodyParser.json()) // Body parse json
 app.use(bodyParser.urlencoded({ extended: false })) // body type
 app.use(`/users`, userRoute)
+app.use(`/point`, pointRoute)
