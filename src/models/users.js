@@ -12,6 +12,17 @@ module.exports = {
       })
     })
   },
+  getUserMe: (id) => {
+    return new Promise((resolve, reject) => {
+      conn.query('SELECT * FROM tb_users WHERE id_user = ?',id,  (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(new Error(err)) 
+        }
+      })
+    })
+  },
   registrasiUser: (data) => {
     console.log(data)
     return new Promise((resolve, reject) => {

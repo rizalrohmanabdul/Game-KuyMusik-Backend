@@ -20,6 +20,7 @@ let upload = multer({ storage: storage });
 Route 
   .all('/*', Auth.authInfo)
   .get('/', userController.getUser)
+  .get('/me/:id', userController.getUser)
   .post(`/`, userController.insertUser)
   .post(`/register`,upload.single('img_profile'), userController.registrasiUser)
   .post(`/login`, userController.loginUser)

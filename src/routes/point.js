@@ -9,7 +9,7 @@ Route
   .get('/', pointController.getPoint)
   .get('/me/:id_users', pointController.getPointMe)
   .patch(`/:id_point`, pointController.updatePoint)
-//   .post(`/`, pointController.insertUser)
+  .post(`/`, pointController.insertPoint)
 //   .patch(`/:id_ktp`, pointController.updateUser)
 //   .delete(`/:id_ktp`, pointController.deleteUser)
 

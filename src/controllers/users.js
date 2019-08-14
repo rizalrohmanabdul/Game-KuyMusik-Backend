@@ -14,6 +14,16 @@ module.exports = {
         console.log(error)
       })
   },
+  getUserMe: (req,  res) => {
+    userModel
+      .getUserMe()
+      .then(resultUser => {
+        help.response(res, resultUser, 200)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  },
   registrasiUser: async (req, res) => {
     const path = req.file.path
     const getUrl = async req => {
