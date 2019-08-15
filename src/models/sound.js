@@ -1,9 +1,9 @@
 const conn = require('../config/connect')
 
 module.exports = {
-  getPoint: () => {
+  getSound: () => {
     return new Promise((resolve, reject) => {
-      conn.query('SELECT * FROM tb_point LEFT JOIN tb_users ON tb_point.id_user = tb_users.id_user ORDER BY point DESC', (err, result) => {
+      conn.query('SELECT * FROM tb_sound', (err, result) => {
         if (!err) {
           resolve(result)
         } else {
@@ -12,9 +12,9 @@ module.exports = {
       })
     })
   },
-  getPointMe: (id_user) => {
+  getSoundNow: () => {
     return new Promise((resolve, reject) => {
-      conn.query('SELECT * FROM tb_point LEFT JOIN tb_users ON tb_point.id_user = tb_users.id_user WHERE tb_point.id_user = ?', id_user ,(err, result) => {
+      conn.query('SELECT sound_name FROM tb_sound WHERE sound_status = 1', (err, result) => {
         if (!err) {
           resolve(result)
         } else {
@@ -23,9 +23,9 @@ module.exports = {
       })
     })
   },
-  insertPoint: (data) => {
+  insertSound: (data) => {
     return new Promise((resolve, reject) => {
-      conn.query('INSERT INTO tb_point SET ? ', data, (err, result) => {
+      conn.query('INSERT INTO tb_sound SET ? ', data, (err, result) => {
         if (!err) {
           resolve(result)
         } else {
@@ -34,9 +34,20 @@ module.exports = {
       })
     }) 
   },
-  updatePoint: (id_point, data) => {
+  updateSoundNow: (id_sound) => {
     return new Promise((resolve, reject) => {
-      conn.query('UPDATE tb_point SET ? WHERE id_point=?', [data, id_point], (err, result) => {
+      conn.query('UPDATE tb_sound SET sound_status= 1 WHERE id_sound=?',id_sound, (err, result) => {
+        if (!err) {
+          resolve(result)
+        } else {
+          reject(new Error(err))
+        }
+      })
+    }) 
+  },
+  updateSoundOld: (id_sound, data) => {
+    return new Promise((resolve, reject) => {
+      conn.query('UPDATE tb_sound SET sound_status= 0 WHERE id_sound=?', id_sound, (err, result) => {
         if (!err) {
           resolve(result)
         } else {

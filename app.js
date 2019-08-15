@@ -9,6 +9,9 @@ const port = process.env.SERVER_PORT || 3333
 
 const userRoute = require('./src/routes/users')
 const pointRoute = require('./src/routes/point')
+const patternRoute = require('./src/routes/pattern')
+const soundRoute = require('./src/routes/sound')
+
 const whitelist = process.env.WHITELIST
 
 const corsOptions = (req, callback) => {
@@ -38,3 +41,5 @@ app.use(bodyParser.json()) // Body parse json
 app.use(bodyParser.urlencoded({ extended: false })) // body type
 app.use(`/users`, userRoute)
 app.use(`/point`, pointRoute)
+app.use(`/pattern`, patternRoute)
+app.use(`/sound`, soundRoute) 
